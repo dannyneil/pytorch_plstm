@@ -35,7 +35,7 @@ class GradMod(torch.autograd.Function):
         with respect to the input.
         """
         x, y = ctx.saved_variables
-        return grad_output * 1, grad_output * torch.neg(torch.floor_divide(x, y))
+        return grad_output * 1, grad_output * torch.neg(torch.div(x, y, rounding_mode='floor'))
 
 class PLSTM(nn.Module):
     def __init__(self, input_sz, hidden_sz):
